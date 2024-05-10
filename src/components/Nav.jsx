@@ -22,10 +22,15 @@ function Nav() {
             </div>
             <ul tabIndex={0} className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
               <li className='p-2  text-lg'>Courses</li>
-              <li className='p-2  text-lg'>Add Course</li>
-              <li className='p-2  text-lg'>Manage Course</li>
-              <li className='p-2  text-lg'>Booked-Courses</li>
-              <li className='p-2  text-lg'>Course-To-Do</li>
+              {
+                user &&
+                <div>
+                  <li className='p-2  text-lg'>Add Course</li>
+                  <li className='p-2  text-lg'>Manage Course</li>
+                  <li className='p-2  text-lg'>Booked-Courses</li>
+                  <li className='p-2  text-lg'>Course-To-Do</li>
+                </div>
+              }
             </ul>
           </div>
           <Link className="btn btn-ghost text-xl w-20">
@@ -35,17 +40,20 @@ function Nav() {
         <div className="navbar-end  hidden lg:flex">
           <ul className="menu  menu-horizontal px-1">
             <li className='lg:text-lg text-sm'><a>Courses</a></li>
-            <li>
-              <details className='z-20'>
-                <summary className='lg:text-lg text-sm'>Dashboard</summary>
-                <ul className={`p-2  ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
-                  <li className='p-2 lg:text-lg text-sm'>Add Course</li>
-                  <li className='p-2 lg:text-lg text-sm'>Manage Course</li>
-                  <li className='p-2 lg:text-lg text-sm'>Booked-Courses</li>
-                  <li className='p-2 lg:text-lg text-sm'>Course-To-Do</li>
-                </ul>
-              </details>
-            </li>
+            {
+              user &&
+              <li>
+                <details className='z-20'>
+                  <summary className='lg:text-lg text-sm'>Dashboard</summary>
+                  <ul className={`p-2  ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
+                    <li className='p-2 lg:text-lg text-sm'>Add Course</li>
+                    <li className='p-2 lg:text-lg text-sm'>Manage Course</li>
+                    <li className='p-2 lg:text-lg text-sm'>Booked-Courses</li>
+                    <li className='p-2 lg:text-lg text-sm'>Course-To-Do</li>
+                  </ul>
+                </details>
+              </li>
+            }
 
           </ul>
         </div>
@@ -59,7 +67,7 @@ function Nav() {
                 <MdDarkMode size={30} />
               </div>}
           </div>
-          <div className='w-fit lg:mr-10  mr-0'> 
+          <div className='w-fit lg:mr-10  mr-0'>
             {
               user ? (
                 <div className='flex items-center justify-center gap-3 mx-10'>
@@ -67,7 +75,7 @@ function Nav() {
                     <img className='img w-full h-full rounded-full object-cover inline-block' src={user?.photoURL
                     } data-tooltip-id="img" data-tooltip-content={user?.displayName} />
                   </div>
-                  <button onClick={logoutClick} className=" p-3 font-semibold text-white rounded-xl bg-gradient-to-r from-[#E6A303] to-[#876514">LogOut</button>
+                  <button onClick={logoutClick} className=" p-3 font-semibold text-white rounded-xl bg-gradient-to-r from-[#E6A303] to-[#876514]">LogOut</button>
                 </div>
               )
                 :
@@ -79,6 +87,7 @@ function Nav() {
             }
           </div>
           <Tooltip
+            className='z-20'
             id="img"
           />
         </div>
