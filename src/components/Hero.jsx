@@ -1,12 +1,14 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import benar from '../img/banner.webp';
 import { IoIosPeople } from "react-icons/io";
 import { BsJournalBookmark } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
+import { AuthContext } from '../Auth/ContextProvider'
 
 function Hero() {
+    const {dark} = useContext(AuthContext)
     return (
-        <div className='relative lg:h-[70vh] h-[60vh] mb-20'>
+        <div className={`relative lg:h-[80vh] h-[60vh] ${dark ? 'bg-[#212121] text-white' : 'bg-[#f2f2f2] text-black'}`}>
             {/* Second div */}
             <div className='absolute inset-0 h-full text-white flex items-center flex-col  justify-center  z-10'>
                 <h1 className='lg:text-6xl md:text-4xl text-3xl font-semibold'>ONLINE COURSES TO LEARN</h1>
