@@ -4,6 +4,7 @@ import Popular from '../components/Popular'
 import { AuthContext } from '../Auth/ContextProvider'
 import DataSection from '../components/DataSection'
 import Categories from '../components/Categories'
+import Certificates from '../components/Certificates'
 
 function Home() {
   const {dark} = useContext(AuthContext)
@@ -13,6 +14,7 @@ function Home() {
       <Popular/>
       <DataSection/>
       <Categories/>
+      <Certificates/>
     </div>
   )
 }
