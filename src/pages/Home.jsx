@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import Popular from '../components/Popular'
 import { AuthContext } from '../Auth/ContextProvider'
 import DataSection from '../components/DataSection'
+import Categories from '../components/Categories'
 
 function Home() {
   const {dark} = useContext(AuthContext)
@@ -11,6 +12,7 @@ function Home() {
       <Hero />
       <Popular/>
       <DataSection/>
+      <Categories/>
     </div>
   )
 }

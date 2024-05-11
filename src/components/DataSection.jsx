@@ -16,7 +16,7 @@ function DataSection() {
     };
 
     return (
-        <div className='py-10 text-white'>
+        <div className='relative h-[50vh] py-24  text-white'>
             <div className='absolute z-10 h-[38vh]  w-full flex items-center justify-center gap-10 flex-wrap p-2 md:p-0'>
                 <div className='flex flex-col md:gap-3 gap-2 items-center justify-center md:border-r-2 border-dashed  md:pr-10 pr-0'>
                     <FaPeopleGroup size={35}/>
