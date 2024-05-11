@@ -9,6 +9,7 @@ import Root from './pages/Root.jsx';
 import Home from './pages/Home.jsx';
 import SignIn from './pages/SignIn.jsx'
 import ContextProvider from './Auth/ContextProvider.jsx';
+import Signup from './pages/SignUp.jsx';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path:'/signin',
         element:<SignIn />
+      },
+      {
+        path:'/signup',
+        element:<Signup />
       }
     ]
   },
