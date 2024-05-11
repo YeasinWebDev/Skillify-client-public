@@ -64,7 +64,7 @@ function Signup() {
     }
     return (
         <div className='py-10'>
-            <div className={`flex flex-col justify-cente items-center  border-2 w-fit mx-auto px-10 py-10 rounded-xl ${dark ? 'bg-[#0E0E0E] text-white' : ''}`}>
+            <div className={`flex flex-col justify-cente items-center  border-2 w-fit mx-auto px-10 py-10 rounded-xl ${dark ? 'bg-[#1A1818] text-white' : ''}`}>
                 <Helmet>
                     <title>SignUp</title>
                 </Helmet>
@@ -115,7 +115,7 @@ function Signup() {
                     <button className='bg-[#B18B5E] text-white w-full p-2 mt-10 rounded-xl'>
                         SignUp
                     </button>
-                    <p className='my-3'>Already have an account ? <Link to={'/signin'} className='text-[#B18B5E] font-bold'>SignIn</Link></p>
+                    <p className='my-3'>Already have an account ? <Link to={'/signin'} className='text-[#B18B5E] font-bold'>Sign In</Link></p>
                     <div className='text-xl w-full '>--------------------------- or --------------------------</div>
                     <div className="flex items-center justify-center flex-col">
                         <h1 className='mb-3 text-xl'>Continue with</h1>

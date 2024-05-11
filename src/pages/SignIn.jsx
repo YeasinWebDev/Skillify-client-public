@@ -46,7 +46,7 @@ export default function App() {
 
     return (
         <div className="py-10">
-            <div className={`flex flex-col justify-center items-center  border-2 w-fit mx-auto px-10 py-10  rounded-xl ${dark ? 'bg-[#0E0E0E] text-white' : ''}`}>
+            <div className={`flex flex-col justify-center items-center  border-2 w-fit mx-auto px-10 py-10  rounded-xl ${dark ? 'bg-[#1A1818] text-white' : ''}`}>
                 <Helmet>
                     <title>SignIn</title>
                 </Helmet>

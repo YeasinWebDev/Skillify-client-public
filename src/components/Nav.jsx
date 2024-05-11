@@ -13,7 +13,7 @@ function Nav() {
     LogOut()
   }
   return (
-    <div className={`md:px-10 p-2 ${dark ? 'bg-[#212121] text-white' : 'bg-[#e1dada] text-black'}`}>
+    <div className={`md:px-10 p-2 ${dark ? 'bg-[#1a1818] text-white' : 'bg-[#E5E6E6] text-black'}`}>
       <div className="navbar justify-between">
         <div className="navbar-start ">
           <div className="dropdown z-20">
