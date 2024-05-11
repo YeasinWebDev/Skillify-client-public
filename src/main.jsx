@@ -13,6 +13,7 @@ import Signup from './pages/SignUp.jsx';
 import AddCourse from './pages/AddCourse.jsx';
 import PrivateRoute from './Route/PrivateRoute.jsx';
 import AllCourses from './pages/AllCourses.jsx';
+import Details from './pages/Details.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,9 +36,13 @@ const router = createBrowserRouter([
         path:"/addCourse",
         element:<PrivateRoute><AddCourse/></PrivateRoute>
       },
-       {
+      {
         path:'/allCourses',
         element:<AllCourses/>
+      },
+      {
+        path:'/details/:id',
+        element:<PrivateRoute><Details/></PrivateRoute>
       }
     ]
   },

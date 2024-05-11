@@ -2,18 +2,20 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Fade } from 'react-awesome-reveal'
 import { AuthContext } from '../Auth/ContextProvider'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function AllCourses() {
     const { dark } = useContext(AuthContext)
     const [courses, setCourses] = useState([])
+
 
     useEffect(() => {
         axios.get('http://localhost:8000/courses')
             .then(res => {
                 setCourses(res.data)
             })
+        window.scrollTo(0, 0)
     }, [])
-    console.log(courses)
 
     return (
         <div className='w-full'>
@@ -21,7 +23,7 @@ function AllCourses() {
             <div className='flex items-center gap-5 flex-wrap justify-center py-10'>
                 {
                     courses?.map((item) => (
-                        <div className="relative card lg:w-96 w-80 shadow-xl">
+                        <div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}>
                             <figure className='w-full h-[30vh]'><img className='rounded-t-xl w-full h-full object-cover' src={item.image} alt="Shoes" /></figure>
                             <div className='flex flex-col gap-2 py-3 items-center  w-full'>
                                 <h1 className='font-semibold'>Course Provider </h1>
@@ -38,7 +40,7 @@ function AllCourses() {
                                 <h3 className='my-2'>Price : <span className='text-orange-500'>${item.price}</span></h3>
                                 <h3 className='mb-2'>Area : <span className='text-orange-500'>"{item.course_Area}"</span></h3>
                                 <div className="card-actions justify-center">
-                                    <button className="btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]">View Detail</button>
+                                    <Link to={`/details/${item._id}`}> <button className="btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]">View Detail</button></Link>
                                 </div>
                             </div>
                         </div>

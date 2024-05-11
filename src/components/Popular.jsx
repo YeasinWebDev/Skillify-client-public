@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Auth/ContextProvider'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function Popular() {
     const { dark } = useContext(AuthContext)
@@ -12,7 +13,6 @@ function Popular() {
                 setCourses(res.data)
             })
     }, [])
-    console.log(courses)
 
     return (
         <div className={` xl:px-[15vw] px-5 flex flex-col ${dark ? 'bg-[#212121] text-white' : 'bg-[#f2f2f2] text-black'}`}>
@@ -21,7 +21,7 @@ function Popular() {
                     <h1 className='text-2xl md:text-4xl font-semibold '>Popular Course​s</h1>
                     <h3 className='mt-2 text-sm'>Limitless learning, more possibilities</h3>
                 </div>
-                <button className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]'>View All Course</button>
+                <Link to={'/allCourses'}><button className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]'>View All Course</button></Link>
             </div>
             <div className='mt-10 flex items-center justify-center gap-10 flex-wrap'>
                 {
@@ -39,7 +39,7 @@ function Popular() {
                                 <p className='text-sm'>{item?.short_des}</p>
                                 <h3 className='my-2'>Price : <span>${item.price}</span></h3>
                                 <div className="card-actions justify-center">
-                                    <button className="btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]">View Detail</button>
+                                   <Link to={`/details/${item._id}`}><button className="btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]">View Detail</button></Link>
                                 </div>
                             </div>
                         </div>
