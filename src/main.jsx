@@ -10,6 +10,8 @@ import Home from './pages/Home.jsx';
 import SignIn from './pages/SignIn.jsx'
 import ContextProvider from './Auth/ContextProvider.jsx';
 import Signup from './pages/SignUp.jsx';
+import AddCourse from './pages/AddCourse.jsx';
+import PrivateRoute from './Route/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
       {
         path:'/signup',
         element:<Signup />
+      },
+      {
+        path:"/addCourse",
+        element:<PrivateRoute><AddCourse/></PrivateRoute>
       }
     ]
   },

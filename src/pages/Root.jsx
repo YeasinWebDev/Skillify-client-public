@@ -9,7 +9,7 @@ function Root() {
   return (
     <div>
       <Nav />
-      <div className={`${dark ? 'bg-[#212121] text-white' : 'bg-[#f2f2f2] text-black'}`}>
+      <div className={`min-h-screen ${dark ? 'bg-[#212121] text-white' : 'bg-[#f2f2f2] text-black'}`}>
         <Outlet />
       </div>
       <Footer />

@@ -13,7 +13,7 @@ function Nav() {
     LogOut()
   }
   return (
-    <div className={`md:px-10 p-2 ${dark ? 'bg-[#1a1818] text-white' : 'bg-[#E5E6E6] text-black'}`}>
+    <div className={`md:px-10 z-20 p-2 ${dark ? 'bg-[#1a1818] text-white' : 'bg-[#E5E6E6] text-black'}`}>
       <div className="navbar justify-between">
         <div className="navbar-start ">
           <div className="dropdown z-20">
@@ -25,10 +25,10 @@ function Nav() {
               {
                 user &&
                 <div>
-                  <li className='p-2  text-lg'>Add Course</li>
-                  <li className='p-2  text-lg'>Manage Course</li>
-                  <li className='p-2  text-lg'>Booked-Courses</li>
-                  <li className='p-2  text-lg'>Course-To-Do</li>
+                  <Link to={'/addCourse'}><li className='p-2  text-lg'>Add Course</li></Link>
+                  <Link><li className='p-2  text-lg'>Manage Course</li></Link>
+                  <Link><li className='p-2  text-lg'>Booked-Courses</li></Link>
+                  <Link><li className='p-2  text-lg'>Course-To-Do</li></Link>
                 </div>
               }
             </ul>
@@ -43,13 +43,13 @@ function Nav() {
             {
               user &&
               <li>
-                <details className='z-20'>
+                <details>
                   <summary className='lg:text-lg text-sm'>Dashboard</summary>
-                  <ul className={`p-2  ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
-                    <li className='p-2 lg:text-lg text-sm'>Add Course</li>
-                    <li className='p-2 lg:text-lg text-sm'>Manage Course</li>
-                    <li className='p-2 lg:text-lg text-sm'>Booked-Courses</li>
-                    <li className='p-2 lg:text-lg text-sm'>Course-To-Do</li>
+                  <ul className={`p-2 z-20 ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
+                    <Link to={'/addCourse'}><li className='p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 '>Add Course</li></Link>
+                    <Link><li className='p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 '>Manage Course</li></Link>
+                    <Link><li className='p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 '>Booked-Courses</li></Link>
+                    <Link><li className='p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 '>Course-To-Do</li></Link>
                   </ul>
                 </details>
               </li>
