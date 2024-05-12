@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-// import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
 import { FaRegEye } from "react-icons/fa6";
@@ -46,9 +46,9 @@ function Signup() {
                     photoURL: data.photo
                 }));
                 navigate('/');
-                // toast("Signup successful");
+                toast.success("Signup successful");
             })
-            .catch(e => toast(e.message));
+            .catch(e => toast.error(e.message));
 
         reset();
     }
@@ -58,9 +58,9 @@ function Signup() {
         logInByGoogle()
             .then(e => {
                 navigate('/')
-                // toast('signUp succesfull')
+                toast.success('signUp succesfull')
             })
-            .catch(e => toast(e.message))
+            .catch(e => toast.error(e.message))
     }
     return (
         <div className='py-10'>

@@ -14,6 +14,7 @@ import AddCourse from './pages/AddCourse.jsx';
 import PrivateRoute from './Route/PrivateRoute.jsx';
 import AllCourses from './pages/AllCourses.jsx';
 import Details from './pages/Details.jsx';
+import toast, { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -51,5 +52,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ContextProvider>
       <RouterProvider router={router} />
+      <Toaster />
   </ContextProvider>
 )

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
-// import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { Fade } from 'react-awesome-reveal';
 import { AuthContext } from '../Auth/ContextProvider';
 // import { Helmet } from "react-helmet";
@@ -33,16 +33,16 @@ function AddCourse() {
             short_des,
             price
         }
-        console.log(data)
 
         
         axios.post('http://localhost:8000/courses', data)
             .then(res => {
                 if (res.data.insertedId) {
                     form.reset()
+                    toast.success('Course Added Successfully')
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => toast.error(err.massage))
 
     }
     return (
@@ -58,17 +58,17 @@ function AddCourse() {
 
                             {/* row-1 */}
                             <div className='flex items-center justify-center gap-5 flex-wrap'>
-                                <input className=' border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='user_name' placeholder='Your Name' defaultValue={user.displayName} />
+                                <input required className=' border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='user_name' placeholder='Your Name' defaultValue={user.displayName} />
                                 <br />
-                                <input className=' border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="email" name='user_email' placeholder='Your Email' defaultValue={user.email} />
+                                <input required className=' border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="email" name='user_email' placeholder='Your Email' defaultValue={user.email} />
                                 <br />
                             </div>
 
                             {/* row-2 */}
                             <div className='flex items-center justify-center gap-5 flex-wrap'>
-                                <input className=' border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='image' placeholder='Image URL' />
+                                <input required className=' border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='image' placeholder='Image URL' />
                                 <br />
-                                <input className=' border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='Course_name' placeholder='Course Name' />
+                                <input required className=' border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='Course_name' placeholder='Course Name' />
                                 <br />
                             </div>
 
@@ -78,16 +78,16 @@ function AddCourse() {
                                     <label className={`block  text-lg font-bold mb-2 ${dark ? 'text-white' : 'text-gray-700'}`} htmlFor="course_Area">
                                     Course Area:
                                     </label>
-                                    <select className='text-black border-2 bg-transparent mb-2 p-2 rounded-lg px-10 py-5' name='course_Area'>
+                                    <select required className='text-black border-2 bg-transparent mb-2 p-2 rounded-lg px-10 py-5' name='course_Area'>
                                         <option value="Business">Business</option>
                                         <option value="Technology">Technology</option>
                                         <option value="Creativity">Creativity</option>
                                         <option value="Health & Fitness">Health & Fitness</option>
                                     </select>
                                 </div>
-                                <input className='md:mt-12 mt-0 border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='price' placeholder='Price' />
+                                <input required className='md:mt-12 mt-0 border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='price' placeholder='Price' />
                             </div>
-                                <textarea className='border-2 w-full mt-10 bg-transparent mb-2 p-2 rounded-lg px-10 py-5' name='short_des' placeholder='Short Description' />
+                                <textarea required className='border-2 w-full mt-10 bg-transparent mb-2 p-2 rounded-lg px-10 py-5' name='short_des' placeholder='Short Description' />
                                 <br />
                         </div>
                         <input className=' border-2 px-6 py-3 bg-transparent rounded-xl absolute bottom-[-70px]' type="submit" value="Add" />

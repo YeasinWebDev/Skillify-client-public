@@ -5,11 +5,13 @@ import { Tooltip } from 'react-tooltip'
 import { AuthContext } from '../Auth/ContextProvider'
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
+import toast from 'react-hot-toast';
 
 function Nav() {
   const { user, LogOut, dark, setDark } = useContext(AuthContext)
   const logoutClick = () => {
     <Navigator to='/' />
+    toast.success('Logged Out Successfully')
     LogOut()
   }
   return (

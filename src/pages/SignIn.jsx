@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
-// import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -29,9 +29,9 @@ export default function App() {
         signIn(data.email, data.password)
             .then(e => {
                 navigate(location.state || '/')
-                // toast('SignIn Succesfull')
+                toast("Login successful")
             })
-            .catch(e => toast(e.message))
+            .catch(e => toast.error(e.message))
         reset()
     }
 
@@ -39,8 +39,9 @@ export default function App() {
         logInByGoogle()
             .then(e => {
                 navigate(location.state || '/')
+                toast("Login successful")
             })
-            .catch(e => toast(e.message))
+            .catch(e => toast.error(e.message))
     }
 
 

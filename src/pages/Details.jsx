@@ -4,14 +4,15 @@ import { useParams } from 'react-router-dom'
 import { AuthContext } from '../Auth/ContextProvider'
 
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
+
+import toast from 'react-hot-toast';
 
 function Details() {
     const { id } = useParams()
     const [data, setData] = useState([])
     const [popUp, setPopUp] = useState(false)
-    const { user,dark } = useContext(AuthContext)
+    const { user, dark } = useContext(AuthContext)
 
     const [startDate, setStartDate] = useState(new Date());
 
@@ -38,7 +39,7 @@ function Details() {
         const des = from.des.value
         const course_Status = 'pending'
 
-        const data ={
+        const data = {
             name,
             image,
             provider_email,
@@ -52,12 +53,15 @@ function Details() {
         }
 
         axios.post('http://localhost:8000/booked_courses', data)
-        .then(res => {
-             if (res.data.insertedId) {
-                //  form.reset()
-                 setPopUp(false)
-             }
-         })
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success('Purchase successfully')
+                    setPopUp(false)
+                }
+                else {
+                    toast.error('Something went wrong')
+                }
+            })
 
     }
     return (
@@ -84,63 +88,66 @@ function Details() {
 
             {
                 popUp &&
-                <div className='absolute z-50 top-0 left-0 w-full min-h-full flex items-center justify-center  bg-gray-900 bg-opacity-50 '>
+                <div className='absolute z-50 top-0 left-0 w-full min-h-[100vh] flex items-center justify-center  bg-gray-900 bg-opacity-50 '>
                     <form className={`w-fit justify-center gap-10 flex relative flex-col  flex-wrap px-10 py-10 rounded-xl  ${dark ? 'text-white bg-[#212121]' : 'text-black bg-[#F8F5F0]'}`} onSubmit={handleSubmit}>
                         <div className='flex flex-wrap items-center md:gap-10 '>
                             <label className=' text-xl mb-3 font-semibold '>
                                 Course Name:
                                 <br />
-                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark? "bg-[#212121]" : ''}`} type="text" name='name' value={data?.Course_name} readOnly />
+                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark ? "bg-[#212121]" : ''}`} type="text" name='name' value={data?.Course_name} readOnly />
                             </label>
                             <label className=' text-xl mb-3 font-semibold '>
                                 Course Image:
                                 <br />
-                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark? "bg-[#212121]" : ''}`} type="text" name='image' value={data?.image} readOnly />
+                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark ? "bg-[#212121]" : ''}`} type="text" name='image' value={data?.image} readOnly />
                             </label>
                         </div>
                         <div className='flex flex-wrap items-center md:gap-10 '>
                             <label className=' text-xl mb-3 font-semibold '>
                                 Provider Email:
                                 <br />
-                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark? "bg-[#212121]" : ''}`} type="text" name='provider_email' value={data?.provider?.email} readOnly />
+                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark ? "bg-[#212121]" : ''}`} type="text" name='provider_email' value={data?.provider?.email} readOnly />
                             </label>
                             <label className=' text-xl mb-3 font-semibold '>
                                 Provider Name:
                                 <br />
-                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark? "bg-[#212121]" : ''}`} type="text" name='provider_name' value={data?.provider?.name} readOnly />
+                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark ? "bg-[#212121]" : ''}`} type="text" name='provider_name' value={data?.provider?.name} readOnly />
                             </label>
                         </div>
                         <div className='flex flex-wrap items-center md:gap-10 '>
                             <label className=' text-xl mb-3 font-semibold '>
                                 User Email:
                                 <br />
-                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark? "bg-[#212121]" : ''}`} type="text" name='user_email' value={user?.email} readOnly />
+                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark ? "bg-[#212121]" : ''}`} type="text" name='user_email' value={user?.email} readOnly />
                             </label>
                             <label className=' text-xl mb-3 font-semibold '>
                                 User Name:
                                 <br />
-                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark? "bg-[#212121]" : ''}`} type="text" name='user_name' value={user?.displayName} readOnly />
+                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark ? "bg-[#212121]" : ''}`} type="text" name='user_name' value={user?.displayName} readOnly />
                             </label>
                         </div>
                         <div className='flex items-center flex-wrap gap-10'>
                             <label className=' text-xl mb-3 font-semibold '>
                                 Course Taking Date:
                                 <br />
-                                <DatePicker className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark? "bg-[#212121]" : ''}`} selected={startDate} onChange={(date) => setStartDate(date)} />
+                                <DatePicker className={`cursor-pointer p-3 border-2 rounded-xl font-normal  outline-none ${dark ? "bg-[#212121]" : ''}`} selected={startDate} onChange={(date) => setStartDate(date)} />
                             </label>
 
                             <label className=' text-xl mb-3 font-semibold '>
                                 Price:
                                 <br />
-                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark? "bg-[#212121]" : ''}`} type="text" name='price' value={`$${data?.price}`} readOnly />
+                                <input className={`p-3 border-2 rounded-xl font-normal  outline-none ${dark ? "bg-[#212121]" : ''}`} type="text" name='price' value={`$${data?.price}`} readOnly />
                             </label>
                         </div>
                         <label className=' text-xl mb-3 font-semibold '>
                             Special Instruction:
                             <br />
-                            <textarea name='des' className={`w-full p-3 border-2  font-normal rounded-xl outline-none ${dark? "bg-[#212121]" : ''}`} />
+                            <textarea name='des' className={`w-full p-3 border-2  font-normal rounded-xl outline-none ${dark ? "bg-[#212121]" : ''}`} />
                         </label>
-                        <button className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]' type="submit">Purchase</button>
+                        <div className='flex justify-between items-center'>
+                            <button className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]' type="submit">Purchase</button>
+                            <button onClick={() => setPopUp(false)} className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]'>cancel</button>
+                        </div>
                     </form>
                 </div>
             }
