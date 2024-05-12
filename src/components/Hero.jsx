@@ -20,7 +20,7 @@ function Hero() {
                     <h3 className='flex items-center gap-2'><IoLocationOutline size={25} /> Learn anything online.</h3>
                 </div>
                 <Link to={'/allCourses'}>
-                    <button className="my-5 p-3 font-semibold text-white rounded-xl bg-gradient-to-r from-[#E6A303] to-[#876514]">All Course</button>
+                    <button className="my-5 p-3 font-semibold text-white rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 ">All Course</button>
                 </Link>
             </div>
             {/* Image div */}

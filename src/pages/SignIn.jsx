@@ -29,7 +29,7 @@ export default function App() {
         signIn(data.email, data.password)
             .then(e => {
                 navigate(location.state || '/')
-                toast("Login successful")
+                toast.success("Login successful")
             })
             .catch(e => toast.error(e.message))
         reset()
@@ -39,7 +39,7 @@ export default function App() {
         logInByGoogle()
             .then(e => {
                 navigate(location.state || '/')
-                toast("Login successful")
+                toast.success("Login successful")
             })
             .catch(e => toast.error(e.message))
     }
@@ -51,7 +51,7 @@ export default function App() {
                 <Helmet>
                     <title>SignIn</title>
                 </Helmet>
-                <h2 className='text-4xl font-semibold mb-5 text-[#B18B5E]'>Login</h2>
+                <h2 className='text-4xl font-semibold mb-5 text-orange-500'>Login</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
                         className={`outline-none border-b-2 w-full  bg-transparent text-xl mb-5 pr-20 ${dark ? 'text-white' : 'text-black'}`}
@@ -84,13 +84,13 @@ export default function App() {
                             />
                             <span className="ml-2">Remember Me</span>
                         </label>
-                        <h1 className='border-b-2 border-[#B18B5E] text-[#B18B5E]'><Link>Forgot Password</Link></h1>
+                        <h1 className='border-b-2 border-orange-500 text-orange-500'><Link>Forgot Password</Link></h1>
                     </div>
                     {errors.checkbox && <span className="text-red-600">Please check the box</span>}
-                    <button className='bg-[#B18B5E] text-white w-full p-2 mt-10 rounded-xl'>
+                    <button className='bg-orange-500 text-white w-full p-2 mt-10 rounded-xl'>
                         Login
                     </button>
-                    <p className='my-3'>Don't have an account ? <Link to={'/signup'} className='text-[#B18B5E] font-bold'>Create an account</Link></p>
+                    <p className='my-3'>Don't have an account ? <Link to={'/signup'} className='text-orange-500 font-bold'>Create an account</Link></p>
                     <div className='text-xl w-full '>-------------------------  or --------------------------</div>
                     <div className="flex items-center justify-center flex-col">
                         <h1 className='mb-3 text-xl'>Continue with</h1>

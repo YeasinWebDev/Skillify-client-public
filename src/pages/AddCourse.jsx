@@ -52,7 +52,7 @@ function AddCourse() {
             </div>
             <div>
                 <div className={`flex flex-col items-center justify-center py-20 ${dark ? 'text-white' : 'text-black'}`}>
-                    <h2 className='text-4xl font-semibold mb-5 text-[#B18B5E]'><Fade cascade duration={200}>Add New Course</Fade></h2>
+                    <h2 className='text-4xl font-semibold mb-5 text-orange-500'><Fade cascade duration={200}>Add New Course</Fade></h2>
                     <form onSubmit={handleAddItem} className='w-full justify-center gap-10 flex relative  flex-wrap'>
                         <div>
 

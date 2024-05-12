@@ -15,6 +15,7 @@ import PrivateRoute from './Route/PrivateRoute.jsx';
 import AllCourses from './pages/AllCourses.jsx';
 import Details from './pages/Details.jsx';
 import toast, { Toaster } from 'react-hot-toast';
+import BookedCourses from './pages/BookedCourses.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path:'/details/:id',
         element:<PrivateRoute><Details/></PrivateRoute>
+      },
+      {
+        path:'/bookedCourses',
+        element:<PrivateRoute><BookedCourses/></PrivateRoute>
       }
     ]
   },

@@ -68,7 +68,7 @@ function Signup() {
                 <Helmet>
                     <title>SignUp</title>
                 </Helmet>
-                <h2 className='text-4xl font-semibold mb-5 text-[#B18B5E]'>SignUp</h2>
+                <h2 className='text-4xl font-semibold mb-5 text-orange-500'>SignUp</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
                         className={`outline-none border-b-2 w-full  bg-transparent text-xl mb-5 pr-20 ${dark ? 'text-white' : 'text-black'}`}
@@ -112,10 +112,10 @@ function Signup() {
                     <br />
                     {errors.password && <span className="text-red-600">Password is required</span>}
 
-                    <button className='bg-[#B18B5E] text-white w-full p-2 mt-10 rounded-xl'>
+                    <button className='bg-orange-500 text-white w-full p-2 mt-10 rounded-xl'>
                         SignUp
                     </button>
-                    <p className='my-3'>Already have an account ? <Link to={'/signin'} className='text-[#B18B5E] font-bold'>Sign In</Link></p>
+                    <p className='my-3'>Already have an account ? <Link to={'/signin'} className='text-orange-500 font-bold'>Sign In</Link></p>
                     <div className='text-xl w-full '>--------------------------- or --------------------------</div>
                     <div className="flex items-center justify-center flex-col">
                         <h1 className='mb-3 text-xl'>Continue with</h1>

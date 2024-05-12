@@ -12,7 +12,7 @@ function Details() {
     const { id } = useParams()
     const [data, setData] = useState([])
     const [popUp, setPopUp] = useState(false)
-    const { user, dark } = useContext(AuthContext)
+    const { user, dark ,disable ,setDisable} = useContext(AuthContext)
 
     const [startDate, setStartDate] = useState(new Date());
 
@@ -23,7 +23,7 @@ function Details() {
             })
         window.scrollTo(0, 0)
     }, [id])
-
+// console.log(data.provider.image)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -32,6 +32,7 @@ function Details() {
         const image = from.image.value
         const provider_email = from.provider_email.value
         const provider_name = from.provider_name.value
+        const provider_img = data?.provider?.image
         const user_email = from.user_email.value
         const user_name = from.user_name.value
         const date = startDate
@@ -39,7 +40,7 @@ function Details() {
         const des = from.des.value
         const course_Status = 'pending'
 
-        const data = {
+        const userData = {
             name,
             image,
             provider_email,
@@ -49,14 +50,16 @@ function Details() {
             date,
             price,
             des,
+            provider_img,
             course_Status
         }
 
-        axios.post('http://localhost:8000/booked_courses', data)
+        axios.post('http://localhost:8000/booked_courses', userData)
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Purchase successfully')
                     setPopUp(false)
+                    setDisable(true)
                 }
                 else {
                     toast.error('Something went wrong')
@@ -81,7 +84,7 @@ function Details() {
                         <h1 className='font-semibold text-lg pb-3'>Name: <span>{data?.provider?.name}</span></h1>
                         <h1 className='font-semibold text-lg pb-3 flex gap-2 items-center'>Image: <span className='w-10 rounded-full'><img className='rounded-full' src={data?.provider?.image} alt="" /></span></h1>
                         <h1 className='font-semibold text-lg pb-3'>Course Area: <span>{data?.course_Area}</span></h1>
-                        <button onClick={() => setPopUp(true)} className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]'>Book Now</button>
+                        <button disabled={disable}  onClick={() => setPopUp(true)} className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]'>Book Now</button>
                     </div>
                 </div>
             </div>

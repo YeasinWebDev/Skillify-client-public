@@ -5,7 +5,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 function AllCourses() {
-    const { dark } = useContext(AuthContext)
+    const { dark,setDetailsValue } = useContext(AuthContext)
     const [courses, setCourses] = useState([])
 
 
@@ -19,7 +19,7 @@ function AllCourses() {
 
     return (
         <div className='w-full'>
-            <h2 className='flex items-center justify-center py-10 text-4xl font-semibold mb-5 text-[#B18B5E]'><Fade cascade duration={200}>All Courses</Fade></h2>
+            <h2 className='flex items-center justify-center py-10 text-4xl font-semibold mb-5 text-orange-500'><Fade cascade duration={200}>All Courses</Fade></h2>
             <div className='flex items-center gap-5 flex-wrap justify-center py-10'>
                 {
                     courses?.map((item) => (

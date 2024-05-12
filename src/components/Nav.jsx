@@ -23,14 +23,22 @@ function Nav() {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </div>
             <ul tabIndex={0} className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
-              <Link to={'/allCourses'}><li className='p-2  text-lg'>Courses</li></Link>
+              <NavLink to={'/allCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>Courses </NavLink>
               {
                 user &&
-                <div>
-                  <Link to={'/addCourse'}><li className='p-2  text-lg'>Add Course</li></Link>
-                  <Link><li className='p-2  text-lg'>Manage Course</li></Link>
-                  <Link><li className='p-2  text-lg'>Booked-Courses</li></Link>
-                  <Link><li className='p-2  text-lg'>Course-To-Do</li></Link>
+                <div className='flex flex-col gap-2'>
+                  <NavLink to={'/addCourse'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                    Add Course
+                  </NavLink>
+                  <NavLink  to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                    Manage Course
+                  </NavLink>
+                  <NavLink to={'/bookedCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                    Booked-Courses
+                  </NavLink>
+                  <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                    Course-To-Do
+                  </NavLink>
                 </div>
               }
             </ul>
@@ -41,7 +49,7 @@ function Nav() {
         </div>
         <div className="navbar-end  hidden lg:flex">
           <ul className="menu  menu-horizontal px-1">
-            <NavLink to={'/allCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+            <NavLink to={'/allCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
               Courses
             </NavLink>
             {
@@ -51,19 +59,19 @@ function Nav() {
                   <summary className='lg:text-lg text-sm'>Dashboard</summary>
                   <ul className={`p-2 z-20 flex flex-col ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
                     <NavLink to={'/addCourse'}
-                      className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+                      className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                       Add Course
                     </NavLink>
 
-                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                       Manage Course
                     </NavLink>
 
-                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+                    <NavLink to={'/bookedCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                       Booked-Courses
                     </NavLink>
 
-                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                       Course-To-Do
                     </NavLink>
                   </ul>
@@ -91,13 +99,13 @@ function Nav() {
                     <img className='img w-full h-full rounded-full object-cover inline-block' src={user?.photoURL
                     } data-tooltip-id="img" data-tooltip-content={user?.displayName} />
                   </div>
-                  <button onClick={logoutClick} className=" p-3 font-semibold text-white rounded-xl bg-gradient-to-r from-[#E6A303] to-[#876514]">LogOut</button>
+                  <button onClick={logoutClick} className=" p-3 font-semibold text-white rounded-xl bg-gradient-to-r from-orange-500 to-orange-600">LogOut</button>
                 </div>
               )
                 :
                 (<div>
                   <Link to='/signin'>
-                    <button className="  p-3 font-semibold text-white  rounded-xl bg-gradient-to-r from-[#E6A303] to-[#876514]">Signin</button>
+                    <button className="  p-3 font-semibold text-white  rounded-xl bg-gradient-to-r from-orange-500 to-orange-600">Signin</button>
                   </Link>
                 </div>)
             }

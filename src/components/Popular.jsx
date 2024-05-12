@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 function Popular() {
-    const { dark } = useContext(AuthContext)
+    const { dark , setDetailsValue} = useContext(AuthContext)
     const [courses, setCourses] = useState([])
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function Popular() {
                     <h1 className='text-2xl md:text-4xl font-semibold '>Popular Course​s</h1>
                     <h3 className='mt-2 text-sm'>Limitless learning, more possibilities</h3>
                 </div>
-                <Link to={'/allCourses'}><button className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]'>View All Course</button></Link>
+                <Link to={'/allCourses'}><button className='btn p-3 w-fit font-semibold text-black border-2 border-orange-500 hover:text-white  rounded-xl hover:bg-gradient-to-r from-orange-500 to-orange-600'>View All Course</button></Link>
             </div>
             <div className='mt-10 flex items-center justify-center gap-10 flex-wrap'>
                 {
@@ -39,7 +39,7 @@ function Popular() {
                                 <p className='text-sm'>{item?.short_des}</p>
                                 <h3 className='my-2'>Price : <span>${item.price}</span></h3>
                                 <div className="card-actions justify-center">
-                                   <Link to={`/details/${item._id}`}><button className="btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]">View Detail</button></Link>
+                                   <Link to={`/details/${item._id}`}><button className="btn p-3 w-fit font-semibold text-black border-2 border-orange-500 hover:text-white  rounded-xl hover:bg-gradient-to-r from-orange-500 to-orange-600">View Detail</button></Link>
                                 </div>
                             </div>
                         </div>
