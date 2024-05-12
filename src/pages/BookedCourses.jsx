@@ -14,7 +14,7 @@ function BookedCourses() {
         setData(res.data)
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [user.email])
 
   return (
     <div className='w-full'>
