@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import img from '../img/Skillify.png'
 import { Tooltip } from 'react-tooltip'
 import { AuthContext } from '../Auth/ContextProvider'
@@ -21,7 +21,7 @@ function Nav() {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </div>
             <ul tabIndex={0} className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
-            <Link to={'/allCourses'}><li className='p-2  text-lg'>Courses</li></Link>
+              <Link to={'/allCourses'}><li className='p-2  text-lg'>Courses</li></Link>
               {
                 user &&
                 <div>
@@ -39,17 +39,31 @@ function Nav() {
         </div>
         <div className="navbar-end  hidden lg:flex">
           <ul className="menu  menu-horizontal px-1">
-            <Link to={'/allCourses'}><li className='lg:text-lg text-sm'><a>Courses</a></li></Link>
+            <NavLink to={'/allCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+              Courses
+            </NavLink>
             {
               user &&
               <li>
                 <details>
                   <summary className='lg:text-lg text-sm'>Dashboard</summary>
-                  <ul className={`p-2 z-20 ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
-                    <Link to={'/addCourse'}><li className='p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 '>Add Course</li></Link>
-                    <Link><li className='p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 '>Manage Course</li></Link>
-                    <Link><li className='p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 '>Booked-Courses</li></Link>
-                    <Link><li className='p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 '>Course-To-Do</li></Link>
+                  <ul className={`p-2 z-20 flex flex-col ${dark ? 'bg-[#212121]' : 'bg-[#f2f2f2]'}`}>
+                    <NavLink to={'/addCourse'}
+                      className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+                      Add Course
+                    </NavLink>
+
+                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+                      Manage Course
+                    </NavLink>
+
+                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+                      Booked-Courses
+                    </NavLink>
+
+                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-500 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-[#B18B5E] rounded-xl' : 'p-2'}`}>
+                      Course-To-Do
+                    </NavLink>
                   </ul>
                 </details>
               </li>

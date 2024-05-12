@@ -50,7 +50,6 @@ function Details() {
             des,
             course_Status
         }
-        console.log(data)
 
         axios.post('http://localhost:8000/booked_courses', data)
         .then(res => {
