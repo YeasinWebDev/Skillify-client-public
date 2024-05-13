@@ -66,7 +66,7 @@ function Signup() {
         <div className='py-10'>
             <div className={`flex flex-col justify-cente items-center  border-2 w-fit mx-auto px-10 py-10 rounded-xl ${dark ? 'bg-[#1A1818] text-white' : ''}`}>
                 <Helmet>
-                    <title>SignUp</title>
+                    <title>Skillify || Sign Up</title>
                 </Helmet>
                 <h2 className='text-4xl font-semibold mb-5 text-orange-500'>SignUp</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -131,5 +131,5 @@ function Signup() {
         </div>
     )
 }
- 
+
 export default Signup

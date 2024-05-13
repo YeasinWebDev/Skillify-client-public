@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Auth/ContextProvider'
 import { Fade } from 'react-awesome-reveal'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 function BookedCourses() {
   const [data, setData] = useState([])
@@ -18,6 +19,9 @@ function BookedCourses() {
 
   return (
     <div className='w-full'>
+      <Helmet>
+        <title>Skillify || Booked Courses</title>
+      </Helmet>
       <h2 className='flex items-center justify-center py-10 text-4xl font-semibold mb-5 text-orange-500'><Fade cascade duration={200}>My Booked Courses</Fade></h2>
       <div className='flex flex-wrap gap-5 items-center justify-center py-10'>
         {
@@ -43,17 +47,14 @@ function BookedCourses() {
               <div className="card-body">
                 <h2 className="font-semibold lg:text-xl text-lg whitespace-nowrap">{item?.name}</h2>
                 <p className='text-sm'>{item?.des}</p>
-                <h3 className='my-2'>Price : <span className='text-orange-500'>{item.price}</span></h3>
+                <h3 className='my-2'>Price : <span className='text-orange-500 font-semibold'>{item.price}</span></h3>
                 <h3 className='mb-2'>Course Status :
                   <span
-                    className={`${item.course_Status === "pending" ? "text-red-600" :
-                      item.course_Status === "done" ? "text-green-500" : ""
+                    className={`${item.course_Status === "pending" ? "text-red-600 font-semibold" :
+                      item.course_Status === "done" ? "text-green-500 font-semibold" : ""
                       }`}>
                     "{item.course_Status}"
                   </span></h3>
-                {/* <div className="card-actions justify-center">
-                  <Link to={`/details2/${item._id}`}> <button className="btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]">View Detail</button></Link>
-                </div> */}
               </div>
             </div>
           ))

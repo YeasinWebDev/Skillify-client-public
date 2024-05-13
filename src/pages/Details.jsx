@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 
 function Details() {
     const { id } = useParams()
@@ -69,6 +70,9 @@ function Details() {
     }
     return (
         <div className='w-full py-10'>
+            <Helmet>
+                <title>Skillify || Course Details</title>
+            </Helmet>
             <div className={`flex justify-center items-center md:flex-row flex-col`}>
                 <div className='md:w-[30vw] w-full'>
                     <img className='w-full object-cover rounded-xl' src={data?.image} alt="" />
