@@ -160,7 +160,7 @@ function ManageCourses() {
                                     <label className={`block  text-lg font-bold mb-2 ${dark ? 'text-white' : 'text-gray-700'}`} htmlFor="course_Area">
                                         Course Area:
                                     </label>
-                                    <select value={popUpData.course_Area} required className='text-black border-2 bg-transparent mb-2  rounded-lg md:px-10 md:py-5 px-2 py-2' name='course_Area'>
+                                    <select defaultValue={popUpData.course_Area} required className='text-black border-2 bg-transparent mb-2  rounded-lg md:px-10 md:py-5 px-2 py-2' name='course_Area'>
                                         <option value="Business">Business</option>
                                         <option value="Technology">Technology</option>
                                         <option value="Creativity">Creativity</option>
