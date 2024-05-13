@@ -4,10 +4,14 @@ import { AuthContext } from '../Auth/ContextProvider'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import { RxCrossCircled } from "react-icons/rx";
 
 function AllCourses() {
-    const { dark,setDetailsValue } = useContext(AuthContext)
+    const { dark, setDetailsValue } = useContext(AuthContext)
     const [courses, setCourses] = useState([])
+    const [resultName, setResultName] = useState(true)
+    const [reloade ,setReloade] = useState(false)
+    const [searchValue, setSearchValue] = useState()
 
 
     useEffect(() => {
@@ -16,7 +20,27 @@ function AllCourses() {
                 setCourses(res.data)
             })
         window.scrollTo(0, 0)
-    }, [])
+    }, [reloade])
+
+    const handelSearch = (e) =>{
+        e.preventDefault()
+
+        const form = e.target
+        const name = form.serach.value
+        setSearchValue(name)
+        console.log(name)
+        axios.get(`http://localhost:8000/coursesBySearch?name=${name}`)
+        .then(res => {
+            setCourses(res.data)
+            setResultName(true)
+            form.reset()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
+    }
 
     return (
         <div className='w-full'>
@@ -24,6 +48,24 @@ function AllCourses() {
                 <title>Skillify || All Courses</title>
             </Helmet>
             <h2 className='flex items-center justify-center py-10 text-4xl font-semibold mb-5 text-orange-500'><Fade cascade duration={200}>All Courses</Fade></h2>
+            <div className={`flex items-center justify-center flex-col gap-3`}>
+                <form onSubmit={handelSearch} className={`flex flex-wrap justify-center items-center gap-5 px-6 py-5 rounded-xl ${dark ? "bg-[#1A1818] text-white" : "bg-[#E5E6E6] text-black"}`}>
+                    <input required className={`w-fit rounded-xl font-semibold  md:text-2xl text-xl outline-none px-5 py-3  bg-transparent border-2  ${dark ? "border-[#f2f2f2]" : "border-[#1A1818]"}`} type="search" name='serach' placeholder="Course Name...." id="" />
+                    <input type='submit' value={"Search"} className='border-2 px-3 py-2 rounded-xl border-green-500 font-semibold hover:bg-green-800 hover:border-green-800'/>
+                </form>
+                {
+                    resultName &&
+                    <h2 className='flex font-semibold items-center justify-center gap-2 text-xl'>Search result of
+                        <span onClick={() => {
+                            setResultName(false),
+                            setReloade(!reloade),
+                            setSearchValue('')
+                        }} className='flex items-center justify-center gap-2 rounded-2xl border-2 border-white p-2 cursor-pointer bg-green-800 text-white' >{searchValue}
+                            <span className='font-bold'><RxCrossCircled size={24} color='#fff' /></span>
+                        </span>
+                    </h2>
+                }
+            </div>
             <div className='flex items-center gap-5 flex-wrap justify-center py-10'>
                 {
                     courses?.map((item) => (
