@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import img from '../img/Skillify.png'
 import { Tooltip } from 'react-tooltip'
 import { AuthContext } from '../Auth/ContextProvider'
 import { MdOutlineDarkMode } from "react-icons/md";
@@ -45,7 +44,7 @@ function Nav() {
             </ul>
           </div>
           <Link className="btn btn-ghost text-xl w-20">
-            <img className='rounded-md' src={img} alt="" />
+            <img className='rounded-md' src={'https://i.ibb.co/pWHf440/Skillify.png'} alt="" />
           </Link>
         </div>
         <div className="navbar-end  hidden lg:flex">

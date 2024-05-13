@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import img from '../img/Skillify.png'
 import { FaLinkedin } from "react-icons/fa";
 import { AuthContext } from '../Auth/ContextProvider';
 
@@ -10,7 +9,7 @@ function Footer() {
       <footer className={`footer p-10  text-base-content border-b-2 border-dashed ${dark ? 'bg-[#1a1818] text-white border-white' : 'bg-base-300 border-black'}`}>
         <aside>
           <div className='w-16 rounded-xl'>
-            <img className='rounded-xl object-cover' src={img} alt="" />
+            <img className='rounded-xl object-cover' src={'https://i.ibb.co/pWHf440/Skillify.png'} alt="" />
           </div>
           <p>Skillify Ltd.<br />Providing reliable tech since 2010</p>
         </aside>

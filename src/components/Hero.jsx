@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import benar from '../img/banner.webp';
 import { IoIosPeople } from "react-icons/io";
 import { BsJournalBookmark } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
@@ -25,7 +24,7 @@ function Hero() {
             </div>
             {/* Image div */}
             <div className='absolute h-[50vh] lg:h-fit  brightness-50 '>
-                <img className='object-cover w-full h-full' src={benar} alt="" />
+                <img className='object-cover w-full h-full' src={'https://i.ibb.co/tqfg4cc/banner.webp'} alt="" />
             </div>
         </div>
     );

@@ -81,7 +81,7 @@ function AddCourse() {
                                 <option value="Business">Business</option>
                                 <option value="Technology">Technology</option>
                                 <option value="Creativity">Creativity</option>
-                                <option value="Health&Fitness">Health & Fitness</option>
+                                <option value="HealthFitness">Health & Fitness</option>
                             </select>
                         </div>
                         <input required className='md:mt-12 mt-0 border-2 bg-transparent mb-5 p-2 rounded-lg px-10 py-5' type="text" name='price' placeholder='Price' />

@@ -26,7 +26,7 @@ function Popular() {
             <div className='mt-10 flex items-center justify-center gap-10 flex-wrap'>
                 {
                     courses.slice(0,6).map(item => (
-                        <div className="relative card lg:w-96 w-80 shadow-xl">
+                        <div key={item._id} className="relative card lg:w-96 w-80 shadow-xl">
                             <figure className='w-full h-[30vh]'><img className='rounded-t-xl w-full h-full object-cover' src={ item.image} alt="Shoes" /></figure>
                             <div className='absolute flex justify-center items-center flex-col w-full lg:top-[40%] top-[35%] mb-10'>
                                 <div className='w-14 rounded-full'>
