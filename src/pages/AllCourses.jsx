@@ -9,13 +9,13 @@ import { RxCrossCircled } from "react-icons/rx";
 function AllCourses() {
     const { dark, setDetailsValue } = useContext(AuthContext)
     const [courses, setCourses] = useState([])
-    const [resultName, setResultName] = useState(true)
+    const [resultName, setResultName] = useState(false)
     const [reloade ,setReloade] = useState(false)
     const [searchValue, setSearchValue] = useState()
 
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses')
+        axios.get('https://a11-server-phi.vercel.app/courses')
             .then(res => {
                 setCourses(res.data)
             })
@@ -28,8 +28,8 @@ function AllCourses() {
         const form = e.target
         const name = form.serach.value
         setSearchValue(name)
-        console.log(name)
-        axios.get(`http://localhost:8000/coursesBySearch?name=${name}`)
+        
+        axios.get(`https://a11-server-phi.vercel.app/coursesBySearch?name=${name}`)
         .then(res => {
             setCourses(res.data)
             setResultName(true)

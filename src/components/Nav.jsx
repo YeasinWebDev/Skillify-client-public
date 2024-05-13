@@ -36,7 +36,7 @@ function Nav() {
                   <NavLink to={'/bookedCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                     Booked-Courses
                   </NavLink>
-                  <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                  <NavLink to={'/coursesToDo'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                     Course-To-Do
                   </NavLink>
                 </div>
@@ -74,7 +74,7 @@ function Nav() {
                       Booked-Courses
                     </NavLink>
 
-                    <NavLink to={''} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                    <NavLink to={'/coursesToDo'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                       Course-To-Do
                     </NavLink>
                   </ul>

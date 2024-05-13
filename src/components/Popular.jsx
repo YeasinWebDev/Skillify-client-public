@@ -8,7 +8,7 @@ function Popular() {
     const [courses, setCourses] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses')
+        axios.get('https://a11-server-phi.vercel.app/courses')
             .then(res => {
                 setCourses(res.data)
             })

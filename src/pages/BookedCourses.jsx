@@ -8,14 +8,14 @@ import { Helmet } from 'react-helmet'
 function BookedCourses() {
   const [data, setData] = useState([])
   const { user, dark } = useContext(AuthContext)
-  console.log(user.email)
+  
   useEffect(() => {
-    axios.get(`http://localhost:8000/booked_courses?email=${user.email}`)
+    axios.get(`https://a11-server-phi.vercel.app/booked_courses?email=${user.email}`)
       .then(res => {
         setData(res.data)
       })
       .catch(err => console.log(err))
-  }, [user.email])
+  }, [user.email,data])
 
   return (
     <div className='w-full'>
@@ -50,8 +50,10 @@ function BookedCourses() {
                 <h3 className='my-2'>Price : <span className='text-orange-500 font-semibold'>{item.price}</span></h3>
                 <h3 className='mb-2'>Course Status :
                   <span
-                    className={`${item.course_Status === "pending" ? "text-red-600 font-semibold" :
-                      item.course_Status === "done" ? "text-green-500 font-semibold" : ""
+                    className={`${
+                      item.course_Status === "pending" ? "text-red-600 font-semibold" :
+                      item.course_Status === "working" ? "text-yellow-500 font-semibold" : 
+                      item.course_Status === "completed" ? "text-green-500 font-semibold" : ""
                       }`}>
                     "{item.course_Status}"
                   </span></h3>

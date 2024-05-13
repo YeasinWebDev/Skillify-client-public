@@ -12,7 +12,7 @@ function CategoriesPage() {
   let categoryName = name.replace(/\W+/g, '')
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/coursesByName?name=${categoryName}`)
+    axios.get(`https://a11-server-phi.vercel.app/coursesByName?name=${categoryName}`)
       .then(res => {
         setData(res.data)
       })
@@ -20,8 +20,6 @@ function CategoriesPage() {
 
     window.scrollTo(0, 0)
   }, [categoryName])
-
-  console.log(data)
 
   return (
     <div>

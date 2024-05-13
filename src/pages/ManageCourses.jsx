@@ -18,7 +18,7 @@ function ManageCourses() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/coursesByEmail?email=${user.email}`)
+        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`)
             .then(res => {
                 setData(res.data)
             })
@@ -41,7 +41,7 @@ function ManageCourses() {
                     text: "Your Course has been deleted.",
                     icon: "success"
                 });
-                axios.delete(`http://localhost:8000/courses/${id}`)
+                axios.delete(`https://a11-server-phi.vercel.app/courses/${id}`)
                     .then(res => {
                         if (res.data.deletedCount) {
                             toast.success('Course Deleted Successfully')
@@ -54,7 +54,7 @@ function ManageCourses() {
     }
 
     const handlePopUp = (id) => {
-        axios.get(`http://localhost:8000/courses/${id}`)
+        axios.get(`https://a11-server-phi.vercel.app/courses/${id}`)
             .then(res => {
                 setPopUpData(res.data)
                 setId(id)
@@ -90,7 +90,7 @@ function ManageCourses() {
             price
         }
 
-        axios.put(`http://localhost:8000/courses/${id}`, data)
+        axios.put(`https://a11-server-phi.vercel.app/courses/${id}`, data)
             .then(res => {
                 if (res.data.modifiedCount) {
                     toast.success('Course Updated Successfully')

@@ -18,13 +18,12 @@ function Details() {
     const [startDate, setStartDate] = useState(new Date());
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/courses/${id}`)
+        axios.get(`https://a11-server-phi.vercel.app/courses/${id}`)
             .then(res => {
                 setData(res.data)
             })
         window.scrollTo(0, 0)
     }, [id])
-// console.log(data.provider.image)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -55,7 +54,7 @@ function Details() {
             course_Status
         }
 
-        axios.post('http://localhost:8000/booked_courses', userData)
+        axios.post('https://a11-server-phi.vercel.app/booked_courses', userData)
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Purchase successfully')

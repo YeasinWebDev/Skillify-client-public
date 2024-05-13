@@ -4,7 +4,6 @@ import toast from 'react-hot-toast';
 import { Fade } from 'react-awesome-reveal';
 import { AuthContext } from '../Auth/ContextProvider';
 import { Helmet } from 'react-helmet';
-// import { Helmet } from "react-helmet";
 
 function AddCourse() {
     const { user, dark } = useContext(AuthContext)
@@ -36,7 +35,7 @@ function AddCourse() {
         }
 
 
-        axios.post('http://localhost:8000/courses', data)
+        axios.post('https://a11-server-phi.vercel.app/courses', data)
             .then(res => {
                 if (res.data.insertedId) {
                     form.reset()

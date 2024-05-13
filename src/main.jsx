@@ -18,6 +18,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import BookedCourses from './pages/BookedCourses.jsx';
 import ManageCourses from './pages/ManageCourses.jsx';
 import CategoriesPage from './pages/CategoriesPage.jsx';
+import CourseToDo from './pages/CourseToDo .jsx';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path:'/manageCourses',
         element:<PrivateRoute><ManageCourses/></PrivateRoute>
+      },
+      {
+        path:'/coursesToDo',
+        element:<PrivateRoute><CourseToDo/></PrivateRoute>
       },
       {
         path:'/categories/:name',
