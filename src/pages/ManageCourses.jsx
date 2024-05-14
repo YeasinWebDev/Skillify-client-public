@@ -164,7 +164,7 @@ function ManageCourses() {
                                         <option value="Business">Business</option>
                                         <option value="Technology">Technology</option>
                                         <option value="Creativity">Creativity</option>
-                                        <option value="Health & Fitness">Health & Fitness</option>
+                                        <option value="HealthFitness">Health & Fitness</option>
                                     </select>
                                 </div>
                                 <input defaultValue={popUpData.price} required className='md:mt-12 mt-0 border-2 bg-transparent md:mb-5  rounded-lg md:px-10 md:py-5 px-2 py-2' type="text" name='price' placeholder='Price' />
