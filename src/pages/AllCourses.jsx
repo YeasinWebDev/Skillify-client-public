@@ -12,12 +12,15 @@ function AllCourses() {
     const [resultName, setResultName] = useState(false)
     const [reloade ,setReloade] = useState(false)
     const [searchValue, setSearchValue] = useState()
+    const [loading, setloading] = useState(false)
 
 
     useEffect(() => {
+        setloading(true)
         axios.get('https://a11-server-phi.vercel.app/courses')
             .then(res => {
                 setCourses(res.data)
+                setloading(false)
             })
         window.scrollTo(0, 0)
     }, [reloade])
@@ -29,8 +32,10 @@ function AllCourses() {
         const name = form.serach.value
         setSearchValue(name)
         
+        setloading(true)
         axios.get(`https://a11-server-phi.vercel.app/coursesBySearch?name=${name}`)
         .then(res => {
+            setloading(false)
             setCourses(res.data)
             setResultName(true)
             form.reset()
@@ -67,6 +72,12 @@ function AllCourses() {
                 }
             </div>
             <div className='flex items-center gap-5 flex-wrap justify-center py-10'>
+                {
+                    loading &&
+                    <div className='flex justify-center items-center w-full h-full'>
+                        <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${dark ? "border-gray-200" : 'border-black'}`}></div>
+                    </div>
+                }
                 {
                     courses?.map((item) => (
                         <div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}>

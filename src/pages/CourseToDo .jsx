@@ -9,11 +9,14 @@ function CourseToDo() {
     const { dark, user } = useContext(AuthContext)
     const [data, setData] = useState([])
     const [status, setStatus] = useState({});
-    
+    const [loading, setloading] = useState(false)
+
     useEffect(() => {
-        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`,{withCredentials: true})
+        setloading(true)
+        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`, { withCredentials: true })
             .then(res => {
                 setData(res.data)
+                setloading(false)
             })
     }, [])
 
@@ -47,7 +50,13 @@ function CourseToDo() {
             <h2 className='flex items-center justify-center py-10 text-4xl font-semibold mb-5 text-orange-500'>
                 <Fade cascade duration={200}>Courses To Do</Fade>
             </h2>
-            <div className='lg:mx-20 flex items-center justify-center'>
+            <div className='lg:mx-20 flex flex-col items-center justify-center'>
+                {
+                    loading &&
+                    <div className='flex justify-center items-center w-full h-full'>
+                        <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${dark ? "border-gray-200" : 'border-black'}`}></div>
+                    </div>
+                }
                 <div className="overflow-x-auto w-full">
                     <table className={`table text-xl ${dark ? "border-[#f2f2f2] text-white" : "border-[#1A1818]"}`}>
                         <thead>

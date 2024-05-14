@@ -15,12 +15,15 @@ function ManageCourses() {
     const [popUp, setPopUp] = useState(false)
     const [popUpData, setPopUpData] = useState([])
     const [id, setId] = useState()
+    const [loading, setloading] = useState(false)
 
 
     useEffect(() => {
-        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`,{withCredentials: true})
+        setloading(true)
+        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`, { withCredentials: true })
             .then(res => {
                 setData(res.data)
+                setloading(false)
             })
     }, [user.email, reloade])
 
@@ -111,22 +114,33 @@ function ManageCourses() {
 
             <div className='flex items-center justify-center gap-5 flex-wrap py-5'>
                 {
-                  data &&  data?.map((item) => (
-                        <div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}>
-                            <figure className='w-full h-[30vh]'><img className='rounded-t-xl w-full h-full object-cover' src={item.image} alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="font-semibold lg:text-xl text-lg whitespace-nowrap">{item?.Course_name}</h2>
-                                <p className='text-sm'>{item?.short_des}</p>
-                                <h3 className='my-2'>Price : <span className='text-orange-500 font-semibold'>${item.price}</span></h3>
-                                <h3 className='mb-2'>Area : <span className='text-orange-500 font-semibold'>"{item.course_Area.replace(/([a-z])([A-Z])/g, '$1 & $2')}"</span></h3>
-                                <div className="card-actions justify-center">
-                                    <Link to={`/details/${item._id}`}> <button className="btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]">View Detail</button></Link>
-                                    <button onClick={() => handlePopUp(item._id)} className="btn p-3 w-fit font-semibold text-black border-2 border-green-800 hover:text-white  rounded-xl hover:bg-gradient-to-r from-green-600 to-green-800">Update</button>
-                                    <button onClick={() => handelDetete(item?._id)} className="btn p-3 w-fit font-semibold text-black border-2 border-red-800 hover:text-white  rounded-xl hover:bg-gradient-to-r from-red-500 to-red-600">Delete</button>
+                    loading &&
+                    <div className='flex justify-center items-center w-full h-full'>
+                        <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${dark ? "border-gray-200" : 'border-black'}`}></div>
+                    </div>
+                }
+                {
+                    data?.length ? <>
+                        {
+                            data?.map((item) => (
+                                <div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}>
+                                    <figure className='w-full h-[30vh]'><img className='rounded-t-xl w-full h-full object-cover' src={item.image} alt="Shoes" /></figure>
+                                    <div className="card-body">
+                                        <h2 className="font-semibold lg:text-xl text-lg whitespace-nowrap">{item?.Course_name}</h2>
+                                        <p className='text-sm'>{item?.short_des}</p>
+                                        <h3 className='my-2'>Price : <span className='text-orange-500 font-semibold'>${item.price}</span></h3>
+                                        <h3 className='mb-2'>Area : <span className='text-orange-500 font-semibold'>"{item.course_Area.replace(/([a-z])([A-Z])/g, '$1 & $2')}"</span></h3>
+                                        <div className="card-actions justify-center">
+                                            <Link to={`/details/${item._id}`}> <button className="btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]">View Detail</button></Link>
+                                            <button onClick={() => handlePopUp(item._id)} className="btn p-3 w-fit font-semibold text-black border-2 border-green-800 hover:text-white  rounded-xl hover:bg-gradient-to-r from-green-600 to-green-800">Update</button>
+                                            <button onClick={() => handelDetete(item?._id)} className="btn p-3 w-fit font-semibold text-black border-2 border-red-800 hover:text-white  rounded-xl hover:bg-gradient-to-r from-red-500 to-red-600">Delete</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    ))
+                            ))
+                        }
+                    </> :
+                            <h1 className='text-xl font-semibold text-orange-500'>No Data Found</h1>
                 }
             </div>
 

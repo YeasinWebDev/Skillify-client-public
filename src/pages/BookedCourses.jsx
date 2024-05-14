@@ -8,14 +8,18 @@ import { Helmet } from 'react-helmet'
 function BookedCourses() {
   const [data, setData] = useState([])
   const { user, dark } = useContext(AuthContext)
-  
+  const [loading, setloading] = useState(false)
+
   useEffect(() => {
-    axios.get(`https://a11-server-phi.vercel.app/booked_courses?email=${user.email}`,{withCredentials: true})
+    setloading(true)
+    axios.get(`https://a11-server-phi.vercel.app/booked_courses?email=${user.email}`, { withCredentials: true })
       .then(res => {
         setData(res.data)
+        setloading(false)
       })
       .catch(err => console.log(err))
-  }, [user.email,data])
+  }, [])
+  console.log(data)
 
   return (
     <div className='w-full'>
@@ -24,6 +28,12 @@ function BookedCourses() {
       </Helmet>
       <h2 className='flex items-center justify-center py-10 text-4xl font-semibold mb-5 text-orange-500'><Fade cascade duration={200}>My Booked Courses</Fade></h2>
       <div className='flex flex-wrap gap-5 items-center justify-center py-10'>
+        {
+          loading &&
+          <div className='flex justify-center items-center w-full h-full'>
+            <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${dark ? "border-gray-200" : 'border-black'}`}></div>
+          </div>
+        }
         {
           data?.length === 0 &&
           <div className='flex items-center justify-center'>
@@ -50,10 +60,9 @@ function BookedCourses() {
                 <h3 className='my-2'>Price : <span className='text-orange-500 font-semibold'>{item.price}</span></h3>
                 <h3 className='mb-2'>Course Status :
                   <span
-                    className={`${
-                      item.course_Status === "pending" ? "text-red-600 font-semibold" :
-                      item.course_Status === "working" ? "text-yellow-500 font-semibold" : 
-                      item.course_Status === "completed" ? "text-green-500 font-semibold" : ""
+                    className={`${item.course_Status === "pending" ? "text-red-600 font-semibold" :
+                        item.course_Status === "working" ? "text-yellow-500 font-semibold" :
+                          item.course_Status === "completed" ? "text-green-500 font-semibold" : ""
                       }`}>
                     "{item.course_Status}"
                   </span></h3>

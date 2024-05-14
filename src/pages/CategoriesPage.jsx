@@ -7,13 +7,16 @@ import { Helmet } from 'react-helmet'
 
 function CategoriesPage() {
   const [data, setData] = useState([])
-  const {dark} = useContext(AuthContext)
+  const { dark } = useContext(AuthContext)
+  const [loading, setloading] = useState(false)
   const { name } = useParams()
   let categoryName = name.replace(/\W+/g, '')
 
   useEffect(() => {
+    setloading(true)
     axios.get(`https://a11-server-phi.vercel.app/coursesByName?name=${categoryName}`)
       .then(res => {
+        setloading(false)
         setData(res.data)
       })
       .catch(err => console.log(err))
@@ -29,6 +32,12 @@ function CategoriesPage() {
       <h2 className='flex items-center justify-center py-10 text-4xl font-semibold mb-5 text-orange-500'><Fade cascade duration={200}>{name}</Fade></h2>
 
       <div className='flex items-center gap-5 flex-wrap justify-center py-10'>
+        {
+          loading &&
+          <div className='flex justify-center items-center w-full h-full'>
+            <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${dark ? "border-gray-200" : 'border-black'}`}></div>
+          </div>
+        }
         {
           data?.map((item) => (
             <div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}>

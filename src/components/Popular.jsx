@@ -6,11 +6,14 @@ import { Link } from 'react-router-dom'
 function Popular() {
     const { dark , setDetailsValue} = useContext(AuthContext)
     const [courses, setCourses] = useState([])
+    const [loading, setloading] = useState(false)
 
     useEffect(() => {
+        setloading(true)
         axios.get('https://a11-server-phi.vercel.app/courses')
             .then(res => {
                 setCourses(res.data)
+                setloading(false)
             })
     }, [])
 
@@ -24,6 +27,12 @@ function Popular() {
                 <Link to={'/allCourses'}><button className='btn p-3 w-fit font-semibold text-black border-2 border-orange-500 hover:text-white  rounded-xl hover:bg-gradient-to-r from-orange-500 to-orange-600'>View All Course</button></Link>
             </div>
             <div className='mt-10 flex items-center justify-center gap-10 flex-wrap'>
+                {
+                    loading &&
+                    <div className='flex justify-center items-center w-full h-full'>
+                        <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${dark ? "border-gray-200" : 'border-black'}`}></div>
+                    </div>
+                }
                 {
                     courses.slice(0,6).map(item => (
                         <div key={item._id} className="relative card lg:w-96 w-80 shadow-xl">
