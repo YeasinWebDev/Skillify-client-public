@@ -11,7 +11,7 @@ function CourseToDo() {
     const [status, setStatus] = useState({});
     
     useEffect(() => {
-        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`)
+        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`,{withCredentials: true})
             .then(res => {
                 setData(res.data)
             })

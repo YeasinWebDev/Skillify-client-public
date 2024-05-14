@@ -18,12 +18,11 @@ function ManageCourses() {
 
 
     useEffect(() => {
-        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`)
+        axios.get(`https://a11-server-phi.vercel.app/coursesByEmail?email=${user.email}`,{withCredentials: true})
             .then(res => {
                 setData(res.data)
             })
     }, [user.email, reloade])
-
 
     const handelDetete = (id) => {
         Swal.fire({
@@ -112,7 +111,7 @@ function ManageCourses() {
 
             <div className='flex items-center justify-center gap-5 flex-wrap py-5'>
                 {
-                    data?.map((item) => (
+                  data &&  data?.map((item) => (
                         <div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}>
                             <figure className='w-full h-[30vh]'><img className='rounded-t-xl w-full h-full object-cover' src={item.image} alt="Shoes" /></figure>
                             <div className="card-body">

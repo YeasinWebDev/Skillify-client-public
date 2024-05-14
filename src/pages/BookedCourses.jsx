@@ -10,7 +10,7 @@ function BookedCourses() {
   const { user, dark } = useContext(AuthContext)
   
   useEffect(() => {
-    axios.get(`https://a11-server-phi.vercel.app/booked_courses?email=${user.email}`)
+    axios.get(`https://a11-server-phi.vercel.app/booked_courses?email=${user.email}`,{withCredentials: true})
       .then(res => {
         setData(res.data)
       })
