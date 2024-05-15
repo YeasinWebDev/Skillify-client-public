@@ -18,8 +18,8 @@ function BookedCourses() {
         setloading(false)
       })
       .catch(err => console.log(err))
-  }, [])
-
+  }, [user])
+console.log(data)
   return (
     <div className='w-full'>
       <Helmet>

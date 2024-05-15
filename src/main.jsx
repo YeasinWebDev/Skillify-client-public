@@ -19,11 +19,13 @@ import BookedCourses from './pages/BookedCourses.jsx';
 import ManageCourses from './pages/ManageCourses.jsx';
 import CategoriesPage from './pages/CategoriesPage.jsx';
 import CourseToDo from './pages/CourseToDo .jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: '/',
