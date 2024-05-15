@@ -19,7 +19,6 @@ function BookedCourses() {
       })
       .catch(err => console.log(err))
   }, [])
-  console.log(data)
 
   return (
     <div className='w-full'>

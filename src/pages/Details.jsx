@@ -12,18 +12,38 @@ import { Helmet } from 'react-helmet';
 function Details() {
     const { id } = useParams()
     const [data, setData] = useState([])
+    const [savedData, setSavedData] = useState([])
     const [popUp, setPopUp] = useState(false)
-    const { user, dark ,disable ,setDisable} = useContext(AuthContext)
+    const [loading, setloading] = useState(false)
+    const { user, dark, disable, setDisable } = useContext(AuthContext)
 
     const [startDate, setStartDate] = useState(new Date());
 
     useEffect(() => {
+        setloading(true)
         axios.get(`https://a11-server-phi.vercel.app/courses/${id}`)
             .then(res => {
                 setData(res.data)
+                setloading(false)
             })
         window.scrollTo(0, 0)
     }, [id])
+
+    // saved data
+    useEffect(() => {
+        axios.get(`https://a11-server-phi.vercel.app/booked_courses?email=${user.email}`, { withCredentials: true })
+            .then(res => {
+                setSavedData(res.data)
+            })
+    }, [])
+
+    const handelPopup = () => {
+        if (savedData.some(i => i.name === data.Course_name)) {
+            return toast.error('You have already booked this course')
+        } else {
+            setPopUp(true);
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -72,25 +92,32 @@ function Details() {
             <Helmet>
                 <title>Skillify || Course Details</title>
             </Helmet>
-            <div className={`flex justify-center items-center md:flex-row flex-col`}>
-                <div className='md:w-[30vw] w-full'>
-                    <img className='w-full object-cover rounded-xl' src={data?.image} alt="" />
-                </div>
-                <div className='flex flex-col items-center justify-center py-5'>
-                    <h1 className='font-semibold md:text-4xl text-2xl pb-3'>{data?.Course_name}</h1>
-                    <p className='text-center md:w-[60%] w-[80%]'>
-                        {data?.short_des}
-                    </p>
-                    <h1 className='font-semibold text-lg py-3'>Price: <span className='text-orange-500 pl-1'>${data?.price}</span></h1>
-                    <div className='pt-10 flex flex-col items-center'>
-                        <h1 className='font-semibold md:text-4xl text-2xl pb-3'>Course Provider</h1>
-                        <h1 className='font-semibold text-lg pb-3'>Name: <span>{data?.provider?.name}</span></h1>
-                        <h1 className='font-semibold text-lg pb-3 flex gap-2 items-center'>Image: <span className='w-10 rounded-full'><img className='rounded-full' src={data?.provider?.image} alt="" /></span></h1>
-                        <h1 className='font-semibold text-lg pb-3'>Course Area: <span>{data?.course_Area}</span></h1>
-                        <button disabled={disable}  onClick={() => setPopUp(true)} className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]'>Book Now</button>
+            {
+                loading ?
+                    <div className='flex justify-center items-center w-full h-full'>
+                        <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${dark ? "border-gray-200" : 'border-black'}`}></div>
                     </div>
-                </div>
-            </div>
+                    :
+                    <div className={`flex justify-center items-center md:flex-row flex-col`}>
+                        <div className='md:w-[30vw] w-full'>
+                            <img className='w-full object-cover rounded-xl' src={data?.image} alt="" />
+                        </div>
+                        <div className='flex flex-col items-center justify-center py-5'>
+                            <h1 className='font-semibold md:text-4xl text-2xl pb-3'>{data?.Course_name}</h1>
+                            <p className='text-center md:w-[60%] w-[80%]'>
+                                {data?.short_des}
+                            </p>
+                            <h1 className='font-semibold text-lg py-3'>Price: <span className='text-orange-500 pl-1'>${data?.price}</span></h1>
+                            <div className='pt-10 flex flex-col items-center'>
+                                <h1 className='font-semibold md:text-4xl text-2xl pb-3'>Course Provider</h1>
+                                <h1 className='font-semibold text-lg pb-3'>Name: <span>{data?.provider?.name}</span></h1>
+                                <h1 className='font-semibold text-lg pb-3 flex gap-2 items-center'>Image: <span className='w-10 rounded-full'><img className='rounded-full' src={data?.provider?.image} alt="" /></span></h1>
+                                <h1 className='font-semibold text-lg pb-3'>Course Area: <span>{data?.course_Area}</span></h1>
+                                <button disabled={disable} onClick={() => handelPopup()} className='btn p-3 w-fit font-semibold text-black border-2 border-[#E6A303] hover:text-white  rounded-xl hover:bg-gradient-to-r from-[#E6A303] to-[#876514]'>Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+            }
 
             {
                 popUp &&
