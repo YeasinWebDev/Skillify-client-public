@@ -4,11 +4,16 @@ import { BsJournalBookmark } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 import { AuthContext } from '../Auth/ContextProvider'
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function Hero() {
     const { dark } = useContext(AuthContext)
     return (
-        <div className={`relative lg:h-[80vh] h-[60vh] ${dark ? 'bg-[#212121] text-white' : 'bg-[#f2f2f2] text-black'}`}>
+        <motion.div className={`relative lg:h-[80vh] h-[60vh] ${dark ? 'bg-[#212121] text-white' : 'bg-[#f2f2f2] text-black'}`}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+        >
             {/* Second div */}
             <div className='absolute inset-0 h-full text-white flex items-center flex-col  justify-center  z-10'>
                 <h1 className='lg:text-6xl md:text-4xl text-3xl font-semibold'>ONLINE COURSES TO LEARN</h1>
@@ -26,7 +31,7 @@ function Hero() {
             <div className='absolute h-[50vh] lg:h-fit  brightness-50 '>
                 <img className='object-cover w-full h-full' src={'https://i.ibb.co/tqfg4cc/banner.webp'} alt="" />
             </div>
-        </div>
+        </motion.div>
     );
 }
 

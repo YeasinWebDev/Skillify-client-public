@@ -5,6 +5,7 @@ import { AuthContext } from '../Auth/ContextProvider'
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import toast from 'react-hot-toast';
+import { motion, stagger } from 'framer-motion';
 
 function Nav() {
   const { user, LogOut, dark, setDark } = useContext(AuthContext)
@@ -14,9 +15,17 @@ function Nav() {
     LogOut()
   }
   return (
-    <div className={`md:px-10 z-20 p-2 ${dark ? 'bg-[#1a1818] text-white' : 'bg-[#E5E6E6] text-black'}`}>
+    <motion.div className={`md:px-10 z-20 p-2 ${dark ? 'bg-[#1a1818] text-white' : 'bg-[#E5E6E6] text-black'}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
       <div className="navbar justify-between">
-        <div className="navbar-start ">
+        <motion.div className="navbar-start "
+          initial={{ x: -150 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 2, ease: "easeInOut", delay: 0.2 }}
+        >
           <div className="dropdown z-20">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -30,7 +39,7 @@ function Nav() {
                   <NavLink to={'/addCourse'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                     Add Course
                   </NavLink>
-                  <NavLink  to={'/manageCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                  <NavLink to={'/manageCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
                     Manage Course
                   </NavLink>
                   <NavLink to={'/bookedCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
@@ -46,15 +55,19 @@ function Nav() {
           <Link className="btn btn-ghost text-xl w-20">
             <img className='rounded-md' src={'https://i.ibb.co/pWHf440/Skillify.png'} alt="" />
           </Link>
-        </div>
-        <div className="navbar-end  hidden lg:flex">
+        </motion.div>
+        <motion.div className="navbar-end  hidden lg:flex"
+          initial={{ x: -300, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 2, ease: "easeInOut", delay: 0.2 }}
+        >
           <ul className="menu  menu-horizontal px-1">
-            <NavLink to={'/'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
-              Home
-            </NavLink>
-            <NavLink to={'/allCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
-              Courses
-            </NavLink>
+              <NavLink to={'/'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                Home
+              </NavLink>
+              <NavLink to={'/allCourses'} className={({ isActive }) => `p-2 lg:text-lg text-sm hover:bg-orange-400 rounded-lg ease-in-out duration-300 ${isActive ? 'bg-orange-500 rounded-xl' : 'p-2'}`}>
+                Courses
+              </NavLink>
             {
               user &&
               <li>
@@ -83,9 +96,13 @@ function Nav() {
             }
 
           </ul>
-        </div>
-        <div className="flex  w-fit  items-center overflow-hidden">
-          <div className='md:mx-6 mx-2 mode'>
+        </motion.div>
+        <motion.div className="flex  w-fit  items-center overflow-hidden"
+          initial={{ x: -200, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 2, ease: "easeInOut", delay: 0.2 }}
+        >
+          <div className='md:mx-2 border-2 rounded-full p-2 mx-2 mode'>
             {dark ?
               <div onClick={() => setDark(false)}>
                 <MdOutlineDarkMode size={30} />
@@ -97,7 +114,7 @@ function Nav() {
           <div className='w-fit lg:mr-10  mr-0'>
             {
               user ? (
-                <div className='flex items-center justify-center gap-3 mx-10'>
+                <div className='flex items-center justify-center gap-3 mx-5'>
                   <div className=' w-10 h-10 rounded-full gap-2'>
                     <img className='img w-full h-full rounded-full object-cover inline-block' src={user?.photoURL
                     } data-tooltip-id="img" data-tooltip-content={user?.displayName} />
@@ -117,9 +134,9 @@ function Nav() {
             className='z-20'
             id="img"
           />
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
