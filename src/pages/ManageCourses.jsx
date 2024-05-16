@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import toast from 'react-hot-toast'
 import { Helmet } from 'react-helmet'
+import { motion } from 'framer-motion'
 
 function ManageCourses() {
 
@@ -122,8 +123,14 @@ function ManageCourses() {
                 {
                     data?.length ? <>
                         {
-                            data?.map((item) => (
-                                <div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}>
+                            data?.map((item, i) => (
+                                <motion.div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}
+                                    initial={{ opacity: 0, y: "100%" }}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                >
                                     <figure className='w-full h-[30vh]'><img className='rounded-t-xl w-full h-full object-cover' src={item.image} alt="Shoes" /></figure>
                                     <div className="card-body">
                                         <h2 className="font-semibold lg:text-xl text-lg whitespace-nowrap">{item?.Course_name}</h2>
@@ -136,11 +143,11 @@ function ManageCourses() {
                                             <button onClick={() => handelDetete(item?._id)} className="btn p-3 w-fit font-semibold text-black border-2 border-red-800 hover:text-white  rounded-xl hover:bg-gradient-to-r from-red-500 to-red-600">Delete</button>
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))
                         }
                     </> :
-                            <h1 className='text-xl font-semibold text-orange-500'>No Data Found</h1>
+                        <h1 className='text-xl font-semibold text-orange-500'>No Data Found</h1>
                 }
             </div>
 

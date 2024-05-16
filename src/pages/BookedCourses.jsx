@@ -2,8 +2,8 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Auth/ContextProvider'
 import { Fade } from 'react-awesome-reveal'
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import { motion } from 'framer-motion'
 
 function BookedCourses() {
   const [data, setData] = useState([])
@@ -19,7 +19,7 @@ function BookedCourses() {
       })
       .catch(err => console.log(err))
   }, [user])
-console.log(data)
+  console.log(data)
   return (
     <div className='w-full'>
       <Helmet>
@@ -40,10 +40,16 @@ console.log(data)
           </div>
         }
         {
-          data?.map((item) => (
-            <div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}>
+          data?.map((item,i) => (
+            <motion.div key={item?._id} className={`relative card lg:w-96 w-96 shadow-xl ${dark ? 'border-2 border-white' : 'border-0'}`}
+              initial={{ opacity: 0, y: "100%" }}
+              whileHover={{ scale: 1.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
               <figure className='w-full h-[30vh]'><img className='rounded-t-xl w-full h-full object-cover' src={item.image} alt="Shoes" /></figure>
-              <div className='flex flex-col gap-2 py-3 items-center  w-full'>
+              <div className='flex flex-col gap-2 py-2 items-center  w-full'>
                 <h1 className='font-semibold'>Course Provider </h1>
                 <div className='flex items-center  flex-col justify-center gap-2'>
                   <div className='w-14 rounded-full'>
@@ -60,13 +66,13 @@ console.log(data)
                 <h3 className='mb-2'>Course Status :
                   <span
                     className={`${item.course_Status === "pending" ? "text-red-600 font-semibold" :
-                        item.course_Status === "working" ? "text-yellow-500 font-semibold" :
-                          item.course_Status === "completed" ? "text-green-500 font-semibold" : ""
+                      item.course_Status === "working" ? "text-yellow-500 font-semibold" :
+                        item.course_Status === "completed" ? "text-green-500 font-semibold" : ""
                       }`}>
                     "{item.course_Status}"
                   </span></h3>
               </div>
-            </div>
+            </motion.div>
           ))
         }
       </div>
