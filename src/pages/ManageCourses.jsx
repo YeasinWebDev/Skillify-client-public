@@ -25,7 +25,7 @@ function ManageCourses() {
                 setData(res.data)
                 setloading(false)
             })
-    }, [user.email, reloade])
+    }, [user, reloade])
 
     const handelDetete = (id) => {
         Swal.fire({
