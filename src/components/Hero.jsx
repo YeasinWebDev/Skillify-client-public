@@ -12,7 +12,7 @@ function Hero() {
         <motion.div className={`relative lg:h-[80vh] h-[60vh] ${dark ? 'bg-[#212121] text-white' : 'bg-[#f2f2f2] text-black'}`}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
         >
             {/* Second div */}
             <div className='absolute inset-0 h-full text-white flex items-center flex-col  justify-center  z-10'>

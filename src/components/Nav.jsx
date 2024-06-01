@@ -16,9 +16,9 @@ function Nav() {
   }
   return (
     <motion.div className={`md:px-10 z-20 p-2 ${dark ? 'bg-[#1a1818] text-white' : 'bg-[#E5E6E6] text-black'}`}
-      initial={{ y: -100 }}
+      initial={{ y: -150 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ duration: .8, ease: "easeInOut" }}
     >
       <div className="navbar justify-between">
         <motion.div className="navbar-start "
