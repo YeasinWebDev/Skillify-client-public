@@ -1,6 +1,6 @@
 # Skillify
 
-Welcome to Skillify, your go-to online course platform! Visit [Skillify.com]((https://skillifycourses.netlify.app)) to explore our courses.
+Welcome to Skillify, your go-to online course platform! Visit [Skillify.com](https://skillifycourses.netlify.app) to explore our courses.
 
 ## Features
 
