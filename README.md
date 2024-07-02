@@ -10,9 +10,6 @@ Welcome to Skillify, your go-to online course platform! Visit [Skillify.com](htt
 - **Course Marketplace:** Users can purchase courses created by other users, enhancing the platform's diversity and expanding learning opportunities.
 - **Responsive Design:** Skillify offers a responsive design, ensuring an optimal viewing and interactive experience across all devices.
 
-## Assignment Category
-
-The selected category for Skillify is `assignment_category_0002`.
 
 ## Technologies Used
 
